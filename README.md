@@ -48,6 +48,6 @@ ROS Service in order to use custom string message
 `source ~/catkin_ws/devel/setup.bash` \
 `rosservice call /changeString " <Input desired custom string> "`
 ### Visualize in RQT (Optional)
-To viualize publisher subscriber relationship, run the following in a new terminal
+To viualize publisher subscriber relationship, run the following in a new terminal \
 `source ~/catkin_ws/devel/setup.bash` \
 `rosrun rqt_graph rqt_graph`
