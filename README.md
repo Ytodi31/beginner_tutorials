@@ -1,6 +1,6 @@
 # ROS Publisher Subscriber
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
----
+
 ## Overview
 This project follows the tutorial of writing a publisher and subscriber from
 the  [ROS Wiki Page](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29).
@@ -16,3 +16,18 @@ is used to change the message being published to a user custom message.
 
 ---
 ## Building the project
+Create a catkin workspace \
+`mkdir -p ~/catkin_ws/src` \
+`cd ~/catkin_ws/` \
+`catkin_make` \
+Source the new setup files \
+`source devel/setup.bash` \
+Clone the repository\
+`cd src/` \
+`git clone https://github.com/Ytodi31/beginner_tutorials.git`\
+Build the project \
+`cd ..` \
+`catkin_make`
+
+---
+## Running the project
