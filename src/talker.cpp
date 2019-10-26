@@ -12,15 +12,14 @@
  *
  * @date 10-26-2019
  */
+#include <sstream>
+#include <memory>
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/customString.h"
 
-#include <sstream>
-#include <memory>
-
-//Defining a smart pointer to point to message to be published
+// Defining a smart pointer to point to message to be published
 std::unique_ptr<std::string> strP (new std::string);
 
 /**
@@ -47,8 +46,7 @@ bool changeString(beginner_tutorials::customString::Request &req,
   * @param Parameter 2, Input
   * @return int, 0 if passed
   */
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   std::string defaultString = "Default String, can be changed";
   // Assigning the pointer to default string
   strP.reset(new std::string);
@@ -105,8 +103,7 @@ int main(int argc, char **argv)
    * a unique string for each message.
    */
   int count = 0;
-  while (ros::ok())
-  {
+  while (ros::ok()) {
     /**
      * This is a message object. You stuff it with data, and then publish it.
      */
