@@ -15,14 +15,38 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "beginner_tutorials/customString.h"
 
 #include <sstream>
+//#include <string>
+#include <memory>
+
+std::unique_ptr<std::string> strP (new std::string);
+/**
+ * @brief Callback function that enables changing message of publisher
+ * @param Parameter 1, request to service to change message
+ * @param Parameter 2, response to service to change message
+ * @return boolean value, true if message change sent
+ */
+bool changeString(beginner_tutorials::customString::Request &req,
+  beginner_tutorials::customString::Response &res) {
+    res.customStr = req.customStr;
+    strP.reset(new std::string);
+    *strP = res.customStr;
+    ROS_INFO("Request:");
+    ROS_INFO("Sending response: ");
+    return true;
+  }
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
  */
 int main(int argc, char **argv)
 {
+  std::string defaultString = "Default String, can be changed";
+  //std::unique_ptr<std::string> strP;
+  strP.reset(new std::string);
+  *strP = defaultString;
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
    * any ROS arguments and name remapping that were provided at the command line.
@@ -41,6 +65,12 @@ int main(int argc, char **argv)
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle n;
+
+  /**
+   * ServiceServer is an approach to call the services
+   */
+  ros::ServiceServer srvString = n.advertiseService("changeString",
+  changeString);
 
   /**
    * The advertise() function is how you tell ROS that you want to
@@ -76,7 +106,7 @@ int main(int argc, char **argv)
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world " << count;
+    ss << *strP << count;
     msg.data = ss.str();
 
     ROS_INFO("%s", msg.data.c_str());
