@@ -17,14 +17,14 @@ is used to change the message being published to a user custom message.
 ---
 ## Building the project
 1. Create a catkin workspace \
-`mkdir -p ~/catkin_ws/src` \
+`mkdir -p ~/catkin_ws/src` (Skip this step if you have an exisitng catkin worksapce)\
 `cd ~/catkin_ws/` \
-`catkin_make` \
+`catkin_make`
 2. Source the new setup files \
-`source devel/setup.bash` \
+`source devel/setup.bash`
 3. Clone the repository\
 `cd src/` \
-`git clone https://github.com/Ytodi31/beginner_tutorials.git`\
+`git clone https://github.com/Ytodi31/beginner_tutorials.git`
 4. Build the project \
 `cd ..` \
 `catkin_make`
@@ -47,3 +47,7 @@ ROS Service in order to use custom string message
 - Terminal 4 - ROS Service\
 `source ~/catkin_ws/devel/setup.bash` \
 `rosservice call /changeString " <Input desired custom string> "`
+### Visualize in RQT (Optional)
+To viualize publisher subscriber relationship, run the following in a new terminal
+`source ~/catkin_ws/devel/setup.bash` \
+`rosrun rqt_graph rqt_graph`
