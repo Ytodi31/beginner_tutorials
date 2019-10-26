@@ -18,10 +18,11 @@
 #include "beginner_tutorials/customString.h"
 
 #include <sstream>
-//#include <string>
 #include <memory>
 
+//Defining a smart pointer to point to message to be published
 std::unique_ptr<std::string> strP (new std::string);
+
 /**
  * @brief Callback function that enables changing message of publisher
  * @param Parameter 1, request to service to change message
@@ -31,22 +32,28 @@ std::unique_ptr<std::string> strP (new std::string);
 bool changeString(beginner_tutorials::customString::Request &req,
   beginner_tutorials::customString::Response &res) {
     res.customStr = req.customStr;
+    // Resetting the pointer to custom string given by user through service
     strP.reset(new std::string);
     *strP = res.customStr;
     ROS_INFO("Request:");
-    ROS_INFO("Sending response: ");
+    ROS_INFO("Sending response:");
     return true;
   }
 
-/**
- * This tutorial demonstrates simple sending of messages over the ROS system.
- */
+ /**
+  * @brief This tutorial demonstrates simple sending of messages
+  * over the ROS system with service to change publishing message
+  * @param Parameter 1, number of inputs
+  * @param Parameter 2, Input
+  * @return int, 0 if passed
+  */
 int main(int argc, char **argv)
 {
   std::string defaultString = "Default String, can be changed";
-  //std::unique_ptr<std::string> strP;
+  // Assigning the pointer to default string
   strP.reset(new std::string);
   *strP = defaultString;
+
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
    * any ROS arguments and name remapping that were provided at the command line.
