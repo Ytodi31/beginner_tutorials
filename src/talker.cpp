@@ -14,6 +14,8 @@
  */
 #include <sstream>
 #include <memory>
+#include <string>
+#include <cctype>
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
@@ -97,8 +99,29 @@ int main(int argc, char **argv) {
    * buffer up before throwing some away.
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  int frequency = 10;
+  if (argc > 1) {
+    std::string stringCheck = argv[1];
+    // Checking for each character of parameter to be a numeric value
+    for (auto& c : stringCheck)
+    {
+      if(isalpha(c))
+      ROS_ERROR_STREAM_ONCE("Frequency should be a numeric value");
+    }
 
-  ros::Rate loop_rate(10);
+    // Converting string to decimal value
+    double tempFrequency = std::stod(argv[1]);
+    frequency = std::stoi(argv[1]);
+    if (tempFrequency - frequency !=0)
+      ROS_WARN_STREAM("Floating value of frequency converted to integer");
+
+    // Checks if frequency is positive
+    if (frequency <= 0) {
+      ROS_FATAL_STREAM("Frequency cannot be negative, try with positive value");
+      return -1;
+    }
+  }
+  ros::Rate loop_rate(frequency);
 
   /**
    * A count of how many messages we have sent. This is used to create
@@ -130,7 +153,5 @@ int main(int argc, char **argv) {
     loop_rate.sleep();
     ++count;
   }
-
-
   return 0;
 }
