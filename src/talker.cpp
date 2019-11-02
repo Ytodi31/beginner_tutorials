@@ -34,23 +34,25 @@ bool changeString(beginner_tutorials::customString::Request &req,
     // Resetting the pointer to custom string given by user through service
     strP.reset(new std::string);
     *strP = res.customStr;
-    ROS_INFO("Request:");
-    ROS_INFO("Sending response:");
+    ROS_DEBUG_STREAM_ONCE("Sending response to change string");
     return true;
   }
 
  /**
   * @brief This tutorial demonstrates simple sending of messages
   * over the ROS system with service to change publishing message
-  * @param Parameter 1, number of inputs
+  * @param Parameter 1, Number of inputs
   * @param Parameter 2, Input
   * @return int, 0 if passed
   */
 int main(int argc, char **argv) {
-  std::string defaultString = "Default String, can be changed";
+  std::string defaultString = "Default String";
   // Assigning the pointer to default string
   strP.reset(new std::string);
   *strP = defaultString;
+  if (*strP == defaultString) {
+    ROS_INFO_STREAM_ONCE("Default string can be changed using ROS Service");
+  }
 
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
