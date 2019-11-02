@@ -1,0 +1,15 @@
+<launch>
+  <node
+    pkg = "beginner_tutorials"
+    type = "talker"
+    name = "talker"
+    output = "screen"
+  />
+
+  <node
+    pkg = "beginner_tutorials"
+    type = "listener"
+    name = "listener"
+    output = "screen"
+  />    
+</launch>
