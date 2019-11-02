@@ -36,7 +36,7 @@ bool changeString(beginner_tutorials::customString::Request &req,
     // Resetting the pointer to custom string given by user through service
     strP.reset(new std::string);
     *strP = res.customStr;
-    ROS_DEBUG_STREAM_ONCE("Sending response to change string");
+    ROS_DEBUG_STREAM("Sending response to change string");
     return true;
   }
 
@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
   strP.reset(new std::string);
   *strP = defaultString;
   if (*strP == defaultString) {
-    ROS_INFO_STREAM_ONCE("Default string can be changed using ROS Service");
+    ROS_INFO_STREAM("Default string can be changed using ROS Service");
   }
 
   /**
@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
     for (auto& c : stringCheck)
     {
       if(isalpha(c))
-      ROS_ERROR_STREAM_ONCE("Frequency should be a numeric value");
+      ROS_ERROR_STREAM("Frequency should be a numeric value");
     }
 
     // Converting string to decimal value
