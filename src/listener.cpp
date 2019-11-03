@@ -23,6 +23,13 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg) {
   ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
 
+/**
+ * @brief This tutorial demonstrates simple sending of messages
+ * over the ROS system with service to change publishing message
+ * @param Parameter 1, Number of inputs
+ * @param Parameter 2, Input
+ * @return int, 0 if passed
+ */
 int main(int argc, char **argv) {
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
