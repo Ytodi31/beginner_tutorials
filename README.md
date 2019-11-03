@@ -31,9 +31,20 @@ is used to change the message being published to a user custom message.
 
 ---
 ## Running the project
-Three terminals are required to run the nodes and one terminal is required to run
-ROS Service in order to use custom string message
-### Running the nodes
+One terminal is required to launch both nodes as described in Option 1 and one terminal is required to run ROS Service to use custom string message.
+Three terminals are required to run the nodes as described in Option 2 and one terminal is required to run ROS Service in order to use custom string message.
+
+### 1. Using launch Files
+- With default frequency \
+`source ~/catkin_ws/devel/setup.bash` \
+`roslaunch beginner_tutorials beginnerTutorials.launch`
+
+- With user defined frequency \
+`source ~/catkin_ws/devel/setup.bash` \
+`roslaunch beginner_tutorials beginnerTutorials.launch frequency:=1`\
+ Instead of `1` in the above command, enter the desired frequency (positive value)
+
+### 2. Running the nodes
 - Terminal 1 - ROS master \
 `source ~/catkin_ws/devel/setup.bash` \
 `roscore`
