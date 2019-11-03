@@ -100,12 +100,12 @@ int main(int argc, char **argv) {
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
   int frequency = 10;
+  // Checks if frquency argument is passed for custom frequency
   if (argc > 1) {
     std::string stringCheck = argv[1];
     // Checking for each character of parameter to be a numeric value
-    for (auto& c : stringCheck)
-    {
-      if(isalpha(c))
+    for (auto& c : stringCheck) {
+      if (isalpha(c))
       ROS_ERROR_STREAM("Frequency should be a numeric value");
     }
 
