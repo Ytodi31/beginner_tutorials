@@ -20,6 +20,8 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/customString.h"
+#include "tf/transform_broadcaster.h"
+
 
 // Defining a smart pointer to point to message to be published
 std::unique_ptr<std::string> strP (new std::string);
@@ -128,6 +130,12 @@ int main(int argc, char **argv) {
    * a unique string for each message.
    */
   int count = 0;
+
+  static tf::TransformBroadcaster broadcaster;
+  // Creating transform object
+  tf::Transform transform;
+  tf::Quaternion q;
+
   while (ros::ok()) {
     /**
      * This is a message object. You stuff it with data, and then publish it.
@@ -147,6 +155,17 @@ int main(int argc, char **argv) {
      * in the constructor above.
      */
     chatter_pub.publish(msg);
+
+    // Setting the origin of talk frame w.r.t world frame
+    transform.setOrigin(tf::Vector3(sin(count), cos(count),1));
+    // Defining the roll pitch yaw for the quaternion
+    q.setRPY(count/10, count/5, 0);
+    // Setting rotation of talk frame w.r.t world
+    transform.setRotation(q);
+
+
+    broadcaster.sendTransform(tf::StampedTransform(transform, ros::Time::now(),
+                              "world", "talk"));
 
     ros::spinOnce();
 

@@ -4,7 +4,7 @@ project(beginner_tutorials)
 ## Compile with C++11
 add_compile_options(-std=c++11)
 
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg tf)
 
 ## Declaring ROS Services
 add_service_files(FILES customString.srv)
