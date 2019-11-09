@@ -16,11 +16,10 @@
 #include "ros/ros.h"
 #include "gtest/gtest.h"
 #include "beginner_tutorials/customString.h"
+#include "tf/transform_listener.h"
 
 /**
  * @brief This test function tests the service for changing the string
- * @param none
- * @return none
  */
 TEST(PublisherTest, testCumstomStringService) {
   ros::NodeHandle nh;
@@ -29,6 +28,29 @@ TEST(PublisherTest, testCumstomStringService) {
 
   beginner_tutorials::customString srv;
   srv.request.customStr = "This is a test string";
+  // Calling service
   client.call(srv);
-  EXPECT_EQ("This is a test string", srv.request.customStr)
+
+  // Test to check if string has changed
+  EXPECT_EQ("This is a test string", srv.request.customStr);
+}
+
+/**
+ * @brief This test function tests the broadcasted message of TF
+ */
+TEST(PublisherTest, testBroadcasterMessage) {
+  // Creating objects
+  tf::TransformListener listener;
+  tf::StampedTransform transform;
+
+  // Waiting for transform
+  listener.waitForTransform("/world", "/talk", ros::Time(0),
+                            ros::Duration(2.0));
+
+  // Fetching broadcasted TF values
+  listener.lookupTransform("/world", "/talk", ros::Time(0), transform);
+
+  // Test to check if x and y coordinates are less than 1
+  EXPECT_GE(1, transform.getOrigin().x());
+  EXPECT_GE(1, transform.getOrigin().y());
 }
