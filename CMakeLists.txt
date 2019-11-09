@@ -29,3 +29,9 @@ target_link_libraries(listener ${catkin_LIBRARIES})
 ## Specify dependencies to link a library or executable target against
 add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest_gtest(testBeginnerTutorials test/testBeginnerTutorials.test test/main.cpp test/testTalker.cpp)
+  target_link_libraries(testBeginnerTutorials ${catkin_LIBRARIES})
+endif()
