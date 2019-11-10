@@ -2,7 +2,11 @@
   <arg
     name = "frequency"
     default = "10"
-  />
+    />
+    <arg
+    name = "recordBag"
+    default = "true"
+    />
   <node
     pkg = "beginner_tutorials"
     type = "talker"
@@ -16,6 +20,14 @@
     type = "listener"
     name = "listener"
     output = "screen"
-    launch-prefix="gnome-terminal --command"	
+    launch-prefix="gnome-terminal --command"
   />
+
+  <node
+    pkg = "rosbag"
+    type = "record"
+    name = "record"
+    args = "-a -O $(find beginner_tutorials)/Results/record.bag"
+    if = "$(arg recordBag)"
+    />
 </launch>
