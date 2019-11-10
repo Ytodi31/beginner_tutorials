@@ -51,7 +51,7 @@
  */
 TEST(PublisherTest, testCumstomStringService) {
   ros::NodeHandle nh;
-  ros::ServiceClient client = nh.serviceClient<beginner_tutorials::customString>
+  auto client = nh.serviceClient<beginner_tutorials::customString>
   ("customString");
 
   beginner_tutorials::customString srv;

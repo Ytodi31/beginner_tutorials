@@ -109,7 +109,7 @@ int main(int argc, char **argv) {
   /**
    * ServiceServer is an approach to call the services
    */
-  ros::ServiceServer srvString = n.advertiseService("changeString",
+  auto srvString = n.advertiseService("changeString",
   changeString);
 
   /**
@@ -129,8 +129,8 @@ int main(int argc, char **argv) {
    * than we can send them, the number here specifies how many messages to
    * buffer up before throwing some away.
    */
-  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
-  int frequency = 10;
+  auto chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  auto frequency = 10;
   // Checks if frquency argument is passed for custom frequency
   if (argc > 1) {
     std::string stringCheck = argv[1];
@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
-  int count = 0;
+  auto count = 0;
 
   static tf::TransformBroadcaster broadcaster;
   // Creating  objects
