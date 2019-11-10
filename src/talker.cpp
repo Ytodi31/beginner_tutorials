@@ -186,7 +186,7 @@ int main(int argc, char **argv) {
     chatter_pub.publish(msg);
 
     // Setting the origin of talk frame w.r.t world frame
-    transform.setOrigin(tf::Vector3(sin(count), cos(count),1));
+    transform.setOrigin(tf::Vector3(sin(count), cos(count), 1));
     // Defining the roll pitch yaw for the quaternion
     q.setRPY(count/10, count/5, 0);
     // Setting rotation of talk frame w.r.t world

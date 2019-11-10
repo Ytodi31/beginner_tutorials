@@ -40,18 +40,17 @@
  *
  * @date 11-09-2019
  */
+#include "ros/ros.h"
+#include "gtest/gtest.h"
 
- #include "ros/ros.h"
- #include "gtest/gtest.h"
-
- /**
-  * @brief Main function for all test functions
-  * @param Parameter 1, Number of inputs
-  * @param Parameter 2, Input
-  * @return boolean value
-  */
- int main(int argc, char** argv) {
-   ros::init(argc, argv,  "testBeginnerTutorials");
-   testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
- }
+/**
+ * @brief Main function for all test functions
+ * @param Parameter 1, Number of inputs
+ * @param Parameter 2, Input
+ * @return boolean value
+ */
+int main(int argc, char** argv) {
+  ros::init(argc, argv,  "testBeginnerTutorials");
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
